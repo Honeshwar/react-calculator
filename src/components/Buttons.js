@@ -1,3 +1,5 @@
+import * as math from 'mathjs';
+
 export default function Buttons(props) {
   const { input, setInput, setResult } = props;
 
@@ -39,7 +41,7 @@ export default function Buttons(props) {
     // to check last element is a operator or not
     const lastElement = input.length - 1;
 
-    //for operator not befor number
+    //for operator not before number
     if (input === "" && isNaN(clickInput)) {
       return;
     }
@@ -73,7 +75,11 @@ export default function Buttons(props) {
       case "=":
         console.log(input);
         try {
-          const result = eval(input);
+          // const result = eval(input);
+          // setInput(result);
+         
+          const result= math.evaluate(input).toString();
+          console.log(result);
           setInput(result);
         } catch (error) {
           setInput("Error ");
